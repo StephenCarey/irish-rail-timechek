@@ -1,2 +1,5 @@
 pylint
+flake8
+coverage
+bandit
 pytest-mock

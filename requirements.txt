@@ -1,1 +1,2 @@
 requests
+defusedxml==0.6.0

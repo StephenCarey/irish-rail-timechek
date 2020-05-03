@@ -19,6 +19,8 @@ init: create_venv ## Setup your local env, e.g. create virtual env with dependan
 
 lint: ## Run a lint on app
 	./${venv_name}/bin/python -m pylint ${app_name}
+	./${venv_name}/bin/python -m flake8 ${app_name} --max-line-length=127
+	./${venv_name}/bin/python -m bandit -r ${app_name}
 
 test: init ## Run any tests.
 	./${venv_name}/bin/python -m pytest
