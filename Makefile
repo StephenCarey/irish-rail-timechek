@@ -1,5 +1,5 @@
 .DEFAULT_GOAL := help
-.PHONY: init build tests clean
+.PHONY: init tests clean
 # adjusted for having mkfile_dir to contain abspath to dir in which makefile lies https://stackoverflow.com/a/18137056
 mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 mkfile_dir := $(abspath $(dir $(mkfile_path)))
@@ -10,6 +10,7 @@ create_venv:  ## Creates a virtualenv, called by init
 ifneq ($(wildcard $(mkfile_dir)/$(venv_name)),)
 	@echo "venv is already exist"
 else
+	@pip install virtualenv
 	@virtualenv ${venv_name}
 endif
 
