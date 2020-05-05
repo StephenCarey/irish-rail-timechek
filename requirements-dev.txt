@@ -3,3 +3,4 @@ flake8
 coverage
 bandit
 pytest-mock
+requests_mock
