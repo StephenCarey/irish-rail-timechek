@@ -1,4 +1,5 @@
 import pytest
+import requests_mock
 from pathlib import Path
 from irish_rail_timecheck import station
 
@@ -12,6 +13,13 @@ test_cases = [
     ("Belfast", departure_list, "No train due in the next period"),
     ("Cobh", '', "No train information available")
 ]
+
+
+def test_get_station_info(requests_mock):
+    requests_mock.get('/realtime/realtime.asmx/getStationDataByCodeXML?StationCode=Cork', text=departure_list)
+    output = station.get_station_info('Cork')
+    assert len(output) != 0
+    assert output == departure_list
 
 
 @pytest.mark.parametrize('station_name, test_data, expected', test_cases)
