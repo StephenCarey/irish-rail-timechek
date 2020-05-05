@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfObjStationData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://api.irishrail.ie/realtime/">
+  <objStationData>
+    <Servertime>2020-04-30T20:47:49.123</Servertime>
+    <Traincode>D258 </Traincode>
+    <Stationfullname>Cork</Stationfullname>
+    <Stationcode>CORK</Stationcode>
+    <Querytime>20:47:49</Querytime>
+    <Traindate>30 Apr 2020</Traindate>
+    <Origin>Cork</Origin>
+    <Destination>Cobh</Destination>
+    <Origintime>21:00</Origintime>
+    <Destinationtime>21:24</Destinationtime>
+    <Status>No Information</Status>
+    <Lastlocation />
+    <Duein>13</Duein>
+    <Late>0</Late>
+    <Exparrival>00:00</Exparrival>
+    <Expdepart>21:00</Expdepart>
+    <Scharrival>00:00</Scharrival>
+    <Schdepart>21:00</Schdepart>
+    <Direction>To Cobh</Direction>
+    <Traintype>Train</Traintype>
+    <Locationtype>O</Locationtype>
+  </objStationData>
+  <objStationData>
+    <Servertime>2020-04-30T20:47:49.123</Servertime>
+    <Traincode>P256 </Traincode>
+    <Stationfullname>Cork</Stationfullname>
+    <Stationcode>CORK</Stationcode>
+    <Querytime>20:47:49</Querytime>
+    <Traindate>30 Apr 2020</Traindate>
+    <Origin>Cobh</Origin>
+    <Destination>Cork</Destination>
+    <Origintime>20:30</Origintime>
+    <Destinationtime>20:54</Destinationtime>
+    <Status>No Information</Status>
+    <Lastlocation />
+    <Duein>7</Duein>
+    <Late>0</Late>
+    <Exparrival>20:54</Exparrival>
+    <Expdepart>00:00</Expdepart>
+    <Scharrival>20:54</Scharrival>
+    <Schdepart>00:00</Schdepart>
+    <Direction>To Cork</Direction>
+    <Traintype>Train</Traintype>
+    <Locationtype>D</Locationtype>
+  </objStationData>
+  <objStationData>
+    <Servertime>2020-04-30T20:47:49.123</Servertime>
+    <Traincode>P289 </Traincode>
+    <Stationfullname>Cork</Stationfullname>
+    <Stationcode>CORK</Stationcode>
+    <Querytime>20:47:49</Querytime>
+    <Traindate>30 Apr 2020</Traindate>
+    <Origin>Midleton</Origin>
+    <Destination>Cork</Destination>
+    <Origintime>20:45</Origintime>
+    <Destinationtime>21:08</Destinationtime>
+    <Status>No Information</Status>
+    <Lastlocation />
+    <Duein>21</Duein>
+    <Late>0</Late>
+    <Exparrival>21:08</Exparrival>
+    <Expdepart>00:00</Expdepart>
+    <Scharrival>21:08</Scharrival>
+    <Schdepart>00:00</Schdepart>
+    <Direction>To Cork</Direction>
+    <Traintype>Train</Traintype>
+    <Locationtype>D</Locationtype>
+  </objStationData>
+  <objStationData>
+    <Servertime>2020-04-30T20:47:49.123</Servertime>
+    <Traincode>A226 </Traincode>
+    <Stationfullname>Cork</Stationfullname>
+    <Stationcode>CORK</Stationcode>
+    <Querytime>20:47:49</Querytime>
+    <Traindate>30 Apr 2020</Traindate>
+    <Origin>Dublin Heuston</Origin>
+    <Destination>Cork</Destination>
+    <Origintime>19:00</Origintime>
+    <Destinationtime>21:40</Destinationtime>
+    <Status>En Route</Status>
+    <Lastlocation>Departed LJ896</Lastlocation>
+    <Duein>51</Duein>
+    <Late>-2</Late>
+    <Exparrival>21:38</Exparrival>
+    <Expdepart>00:00</Expdepart>
+    <Scharrival>21:40</Scharrival>
+    <Schdepart>00:00</Schdepart>
+    <Direction>To Cork</Direction>
+    <Traintype>Train</Traintype>
+    <Locationtype>D</Locationtype>
+  </objStationData>
+  <objStationData>
+    <Servertime>2020-04-30T20:47:49.123</Servertime>
+    <Traincode>P257 </Traincode>
+    <Stationfullname>Cork</Stationfullname>
+    <Stationcode>CORK</Stationcode>
+    <Querytime>20:47:49</Querytime>
+    <Traindate>30 Apr 2020</Traindate>
+    <Origin>Cobh</Origin>
+    <Destination>Cork</Destination>
+    <Origintime>21:30</Origintime>
+    <Destinationtime>21:54</Destinationtime>
+    <Status>No Information</Status>
+    <Lastlocation />
+    <Duein>67</Duein>
+    <Late>0</Late>
+    <Exparrival>21:54</Exparrival>
+    <Expdepart>00:00</Expdepart>
+    <Scharrival>21:54</Scharrival>
+    <Schdepart>00:00</Schdepart>
+    <Direction>To Cork</Direction>
+    <Traintype>Train</Traintype>
+    <Locationtype>D</Locationtype>
+  </objStationData>
+  <objStationData>
+    <Servertime>2020-04-30T20:47:49.123</Servertime>
+    <Traincode>P290 </Traincode>
+    <Stationfullname>Cork</Stationfullname>
+    <Stationcode>CORK</Stationcode>
+    <Querytime>20:47:49</Querytime>
+    <Traindate>30 Apr 2020</Traindate>
+    <Origin>Midleton</Origin>
+    <Destination>Cork</Destination>
+    <Origintime>21:45</Origintime>
+    <Destinationtime>22:08</Destinationtime>
+    <Status>No Information</Status>
+    <Lastlocation />
+    <Duein>81</Duein>
+    <Late>0</Late>
+    <Exparrival>22:08</Exparrival>
+    <Expdepart>00:00</Expdepart>
+    <Scharrival>22:08</Scharrival>
+    <Schdepart>00:00</Schdepart>
+    <Direction>To Cork</Direction>
+    <Traintype>Train</Traintype>
+    <Locationtype>D</Locationtype>
+  </objStationData>
+  <objStationData>
+    <Servertime>2020-04-30T20:47:49.123</Servertime>
+    <Traincode>D290 </Traincode>
+    <Stationfullname>Cork</Stationfullname>
+    <Stationcode>CORK</Stationcode>
+    <Querytime>20:47:49</Querytime>
+    <Traindate>30 Apr 2020</Traindate>
+    <Origin>Cork</Origin>
+    <Destination>Midleton</Destination>
+    <Origintime>21:15</Origintime>
+    <Destinationtime>21:38</Destinationtime>
+    <Status>No Information</Status>
+    <Lastlocation />
+    <Duein>28</Duein>
+    <Late>0</Late>
+    <Exparrival>00:00</Exparrival>
+    <Expdepart>21:15</Expdepart>
+    <Scharrival>00:00</Scharrival>
+    <Schdepart>21:15</Schdepart>
+    <Direction>To Midleton</Direction>
+    <Traintype>Train</Traintype>
+    <Locationtype>O</Locationtype>
+  </objStationData>
+  <objStationData>
+    <Servertime>2020-04-30T20:47:49.123</Servertime>
+    <Traincode>A314 </Traincode>
+    <Stationfullname>Cork</Stationfullname>
+    <Stationcode>CORK</Stationcode>
+    <Querytime>20:47:49</Querytime>
+    <Traindate>30 Apr 2020</Traindate>
+    <Origin>Cork</Origin>
+    <Destination>Tralee</Destination>
+    <Origintime>20:55</Origintime>
+    <Destinationtime>22:51</Destinationtime>
+    <Status>No Information</Status>
+    <Lastlocation />
+    <Duein>8</Duein>
+    <Late>0</Late>
+    <Exparrival>00:00</Exparrival>
+    <Expdepart>20:55</Expdepart>
+    <Scharrival>00:00</Scharrival>
+    <Schdepart>20:55</Schdepart>
+    <Direction>To Tralee</Direction>
+    <Traintype>Train</Traintype>
+    <Locationtype>O</Locationtype>
+  </objStationData>
+</ArrayOfObjStationData>
