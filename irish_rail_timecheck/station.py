@@ -6,6 +6,25 @@ import requests
 import defusedxml.minidom
 
 
+def get_station_code(station_name):
+    """Get a train stations code based on its common name
+    """
+    station_list_api = "http://api.irishrail.ie/realtime/realtime.asmx/getAllStationsXML"
+    response = requests.get(station_list_api)
+    try:
+        dom = defusedxml.minidom.parseString(response.text)
+    except ExpatError:
+        return 'No Station information available'
+
+    stations = dom.getElementsByTagName("objStation")
+    for station in stations:
+        common_name = station.getElementsByTagName("StationDesc")[0].childNodes[0].data
+        if station_name == common_name:
+            return station.getElementsByTagName("StationCode")[0].childNodes[0].data
+
+    return 'No suche station code found'
+
+
 def get_station_info(station):
     """Poll the Irish rail API to get current station information
     """
