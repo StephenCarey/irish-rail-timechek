@@ -19,8 +19,8 @@ def get_station_code(station_name):
     stations = dom.getElementsByTagName("objStation")
     for station in stations:
         common_name = station.getElementsByTagName("StationDesc")[0].childNodes[0].data
-        if station_name == common_name:
-            return station.getElementsByTagName("StationCode")[0].childNodes[0].data
+        if station_name.lower() in common_name.lower():
+            return station.getElementsByTagName("StationCode")[0].childNodes[0].data.strip()
 
     return 'No suche station code found'
 

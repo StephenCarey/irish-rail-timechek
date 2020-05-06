@@ -12,7 +12,10 @@ with open(path / 'stationList.xml', "r") as station_data:
     station_list = station_data.read()
 
 get_station_code_test_cases = [
-    ("Drogheda", station_list, "DGHDA")
+    ("Drogheda", station_list, "DGHDA"),
+    ("Cork", station_list, "CORK"),
+    ("thomastown", station_list, "THTWN"),
+    ("Connolly", station_list, "CNLLY")
 ]
 
 next_train_test_cases = [
