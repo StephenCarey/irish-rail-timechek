@@ -2,9 +2,9 @@
 Based on parsed input provide responses to station queries.
 """
 from xml.parsers.expat import ExpatError
-from irish_rail_timecheck import config
 import requests
 import defusedxml.minidom
+from irish_rail_timecheck import config
 
 
 def get_station_code(station_name):
