@@ -25,11 +25,6 @@ next_train_test_cases = [
     ("Cobh", '', "No train information available")
 ]
 
-station_info_test_cases = [
-    ("Cobh", departure_list, departure_list),
-    ("Cobh", '', '')
-]
-
 
 @pytest.mark.parametrize('common_station_name, test_data, expected', get_station_code_test_cases)
 def test_get_station_code(common_station_name, test_data, expected, requests_mock):
@@ -38,14 +33,8 @@ def test_get_station_code(common_station_name, test_data, expected, requests_moc
     assert output == expected
 
 
-@pytest.mark.parametrize('station_name, test_data, expected', station_info_test_cases)
-def test_get_station_info(station_name, test_data, expected, requests_mock):
-    requests_mock.get('/realtime/realtime.asmx/getStationDataByCodeXML?StationCode=' + station_name, text=test_data)
-    output = station.get_station_info(station_name)
-    assert output == expected
-
-
 @pytest.mark.parametrize('station_name, test_data, expected', next_train_test_cases)
-def test_next_train_to(station_name, test_data, expected):
-    output = station.next_train_to(station_name, test_data)
+def test_next_train_to(station_name, test_data, expected, requests_mock):
+    requests_mock.get('/realtime/realtime.asmx/getStationDataByCodeXML?StationCode=' + station_name, text=test_data)
+    output = station.next_train_to(station_name)
     assert output == expected

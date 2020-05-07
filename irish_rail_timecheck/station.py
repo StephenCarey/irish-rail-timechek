@@ -2,6 +2,7 @@
 Based on parsed input provide responses to station queries.
 """
 from xml.parsers.expat import ExpatError
+from irish_rail_timecheck import config
 import requests
 import defusedxml.minidom
 
@@ -9,8 +10,7 @@ import defusedxml.minidom
 def get_station_code(station_name):
     """Get a train stations code based on its common name
     """
-    station_list_api = "http://api.irishrail.ie/realtime/realtime.asmx/getAllStationsXML"
-    response = requests.get(station_list_api)
+    response = requests.get(config.API_ENDPOINTS['station_list'])
     try:
         dom = defusedxml.minidom.parseString(response.text)
     except ExpatError:
@@ -25,20 +25,12 @@ def get_station_code(station_name):
     return 'No suche station code found'
 
 
-def get_station_info(station):
-    """Poll the Irish rail API to get current station information
-    """
-    station_info_api = "http://api.irishrail.ie/" \
-                       "realtime/realtime.asmx/getStationDataByCodeXML?StationCode="
-    response = requests.get(station_info_api + station)
-    return response.text
-
-
-def next_train_to(station, departures):
+def next_train_to(station):
     """ Return the next train to a given station
     """
+    response = requests.get(config.API_ENDPOINTS['station_info'] + station)
     try:
-        dom = defusedxml.minidom.parseString(departures)
+        dom = defusedxml.minidom.parseString(response.text)
     except ExpatError:
         return 'No train information available'
 
