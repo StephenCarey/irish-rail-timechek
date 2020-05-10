@@ -19,9 +19,9 @@ get_station_code_test_cases = [
 ]
 
 next_train_test_cases = [
-    ("Cobh", departure_list, "21:00"),
-    ("Tralee", departure_list, "20:55"),
-    ("Belfast", departure_list, "No train due in the next period"),
+    ("Cobh", departure_list, "The next train to Cobh is 21:00"),
+    ("Tralee", departure_list, "The next train to Tralee is 20:55"),
+    ("Belfast", departure_list, "No train to Belfast due in the next period"),
     ("Cobh", '', "No train information available")
 ]
 
@@ -35,6 +35,6 @@ def test_get_station_code(common_station_name, test_data, expected, requests_moc
 
 @pytest.mark.parametrize('station_name, test_data, expected', next_train_test_cases)
 def test_next_train_to(station_name, test_data, expected, requests_mock):
-    requests_mock.get('/realtime/realtime.asmx/getStationDataByCodeXML?StationCode=' + station_name, text=test_data)
-    output = station.next_train_to(station_name)
+    requests_mock.get('/realtime/realtime.asmx/getStationDataByCodeXML?StationCode=Cork', text=test_data)
+    output = station.next_train_to('Cork', station_name)
     assert output == expected
