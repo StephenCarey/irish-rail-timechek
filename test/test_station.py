@@ -21,23 +21,22 @@ with open(path / 'test_data/stationList.xml', "r") as station_data:
     station_list = station_data.read()
 
 get_station_code_test_cases = [
-    ("Drogheda", station_list, "DGHDA"),
-    ("Cork", station_list, "CORK"),
-    ("thomastown", station_list, "THTWN"),
-    ("Connolly", station_list, "CNLLY")
+    ("Drogheda", "DGHDA"),
+    ("Cork", "CORK"),
+    ("thomastown", "THTWN"),
+    ("Connolly", "CNLLY")
 ]
 
 get_station_code_exeption_test_cases = [
-    ('Connnly', station_list, 'Station Connnly not found'),
-    ('Connolly', '', 'No station information available')
+    ('Connnly', 'Station Connnly not found')
 ]
 
 next_train_test_cases = [
-    ("Cork", "Cobh", "COBH", cork_departure_list, cobh_departure_list, station_list,"The next train to Cobh is 09:00"),
-    ("Cork", "Midleton", "MDLTN", cork_departure_list, midleton_departure_list, station_list, "The next train to Midleton is 09:15"),
-    ("Cork", "Belfast", "BFSTC", cork_departure_list, belfast_departure_list, station_list, "No train to Belfast due in the next period"),
-    ("Cork", "coob", "", '', '', station_list, "Station coob not found"),
-    ("Cork", "Cobh", 'COBH', '', '', '', "No station information available")
+    ("Cork", "Cobh", "COBH", cork_departure_list, cobh_departure_list,"The next train to Cobh is 09:00"),
+    ("Cork", "Midleton", "MDLTN", cork_departure_list, midleton_departure_list, "The next train to Midleton is 09:15"),
+    ("Cork", "Belfast", "BFSTC", cork_departure_list, belfast_departure_list, "No train to Belfast due in the next period"),
+    ("Cork", "coob", "", '', '', "Station coob not found"),
+    ("Cork", "Cobh", 'COBH', '', '', "No station information available")
 ]
 
 station_info_test_cases = [
@@ -45,26 +44,23 @@ station_info_test_cases = [
 ]
 
 
-@pytest.mark.parametrize('common_station_name, test_data, expected', get_station_code_test_cases)
-def test_get_station_code(common_station_name, test_data, expected, requests_mock):
-    requests_mock.get('/realtime/realtime.asmx/getAllStationsXML', text=test_data)
+@pytest.mark.parametrize('common_station_name, expected', get_station_code_test_cases)
+def test_get_station_code(common_station_name, expected):
     output = station.get_station_code(common_station_name)
     assert output == expected
 
 
-@pytest.mark.parametrize('station_name, test_data, expected', get_station_code_exeption_test_cases)
-def test_get_station_code_exeption(station_name, test_data, expected, requests_mock):
-    requests_mock.get('/realtime/realtime.asmx/getAllStationsXML', text=test_data)
+@pytest.mark.parametrize('station_name, expected', get_station_code_exeption_test_cases)
+def test_get_station_code_exeption(station_name, expected):
     with pytest.raises(Exception) as execinfo:
         station.get_station_code(station_name)
     
     assert str(execinfo.value) == expected
 
-@pytest.mark.parametrize('depart_station, arrive_station, station_code, departure_data, destination_data, station_codes, expected', next_train_test_cases)
-def test_next_train_to(depart_station, arrive_station, station_code, departure_data, destination_data, station_codes, expected, requests_mock):
+@pytest.mark.parametrize('depart_station, arrive_station, station_code, departure_data, destination_data, expected', next_train_test_cases)
+def test_next_train_to(depart_station, arrive_station, station_code, departure_data, destination_data, expected, requests_mock):
     requests_mock.get('/realtime/realtime.asmx/getStationDataByCodeXML?StationCode=' + depart_station, text=departure_data)
     requests_mock.get('/realtime/realtime.asmx/getStationDataByCodeXML?StationCode=' + station_code, text=destination_data)
-    requests_mock.get('/realtime/realtime.asmx/getAllStationsXML', text=station_codes)
 
     output = station.next_train_to(depart_station, arrive_station)
     assert output == expected
