@@ -18,7 +18,7 @@ def get_station_code(station_name):
     try:
         dom = defusedxml.minidom.parseString(response.text)
     except ExpatError:
-        return 'No Station information available'
+        raise ValueError('No station information available')
 
     stations = dom.getElementsByTagName("objStation")
     for station in stations:
@@ -26,28 +26,45 @@ def get_station_code(station_name):
         if station_name.lower() in common_name.lower():
             return station.getElementsByTagName("StationCode")[0].childNodes[0].data.strip()
 
-    return 'No such station code found'
+    raise ValueError('Station ' + station_name + ' not found')
 
 
 def next_train_to(station, destination):
     """ Return the next train to a given station
     """
+    try:
+        trains_from_departure = get_station_info(get_station_code(station))
+        trains_from_destination = get_station_info(get_station_code(destination))
+    except ValueError as message:
+        return str(message)
+
+    for train_id in trains_from_departure:
+        # A time of 00:00 signals the train in inbound rather than out.
+        if train_id in trains_from_destination and trains_from_departure.get(train_id) != "00:00":
+            return "The next train to " + \
+                    destination + " is " + \
+                    trains_from_departure.get(train_id)
+
+    return "No train to " + destination + " due in the next period"
+
+
+def get_station_info(station):
+    """ Get trains for a given station
+    """
+    trains = {}
     response = requests.get(config.API_ENDPOINTS['station_info'] + station)
     try:
         dom = defusedxml.minidom.parseString(response.text)
     except ExpatError:
-        return 'No train information available'
+        return trains
 
     station_events = dom.getElementsByTagName("objStationData")
 
     for train_info in station_events:
-        train_destination = train_info.getElementsByTagName("Destination")[0].childNodes[0].data
-        if train_destination == destination:
-            return "The next train to " + \
-                    destination + " is " + \
-                    train_info.getElementsByTagName("Expdepart")[0].childNodes[0].data
+        trains[train_info.getElementsByTagName("Traincode")[0].childNodes[0].data.strip()] \
+            = train_info.getElementsByTagName("Expdepart")[0].childNodes[0].data
 
-    return "No train to " + destination + " due in the next period"
+    return trains
 
 
 if __name__ == '__main__':

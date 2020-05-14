@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfObjStationData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://api.irishrail.ie/realtime/">
+  <objStationData>
+    <Servertime>2020-05-13T08:47:39.46</Servertime>
+    <Traincode>P277 </Traincode>
+    <Stationfullname>Midleton</Stationfullname>
+    <Stationcode>MDLTN</Stationcode>
+    <Querytime>08:47:39</Querytime>
+    <Traindate>13 May 2020</Traindate>
+    <Origin>Midleton</Origin>
+    <Destination>Cork</Destination>
+    <Origintime>09:45</Origintime>
+    <Destinationtime>10:08</Destinationtime>
+    <Status>No Information</Status>
+    <Lastlocation />
+    <Duein>58</Duein>
+    <Late>0</Late>
+    <Exparrival>00:00</Exparrival>
+    <Expdepart>09:45</Expdepart>
+    <Scharrival>00:00</Scharrival>
+    <Schdepart>09:45</Schdepart>
+    <Direction>To Cork</Direction>
+    <Traintype>Train</Traintype>
+    <Locationtype>O</Locationtype>
+  </objStationData>
+  <objStationData>
+    <Servertime>2020-05-13T08:47:39.46</Servertime>
+    <Traincode>D277 </Traincode>
+    <Stationfullname>Midleton</Stationfullname>
+    <Stationcode>MDLTN</Stationcode>
+    <Querytime>08:47:39</Querytime>
+    <Traindate>13 May 2020</Traindate>
+    <Origin>Cork</Origin>
+    <Destination>Midleton</Destination>
+    <Origintime>09:15</Origintime>
+    <Destinationtime>09:39</Destinationtime>
+    <Status>No Information</Status>
+    <Lastlocation />
+    <Duein>52</Duein>
+    <Late>0</Late>
+    <Exparrival>09:39</Exparrival>
+    <Expdepart>00:00</Expdepart>
+    <Scharrival>09:39</Scharrival>
+    <Schdepart>00:00</Schdepart>
+    <Direction>To Midleton</Direction>
+    <Traintype>Train</Traintype>
+    <Locationtype>D</Locationtype>
+  </objStationData>
+</ArrayOfObjStationData>
