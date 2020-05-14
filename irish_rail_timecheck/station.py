@@ -14,19 +14,10 @@ logger.setLevel(logging.INFO)
 def get_station_code(station_name):
     """Get a train stations code based on its common name
     """
-    response = requests.get(config.API_ENDPOINTS['station_list'])
-    try:
-        dom = defusedxml.minidom.parseString(response.text)
-    except ExpatError:
-        raise ValueError('No station information available')
-
-    stations = dom.getElementsByTagName("objStation")
-    for station in stations:
-        common_name = station.getElementsByTagName("StationDesc")[0].childNodes[0].data
-        if station_name.lower() in common_name.lower():
-            return station.getElementsByTagName("StationCode")[0].childNodes[0].data.strip()
-
-    raise ValueError('Station ' + station_name + ' not found')
+    station_code = config.station_code.get(station_name.lower(), 'not found')
+    if station_code == 'not found':
+        raise ValueError('Station ' + station_name + ' not found')
+    return station_code
 
 
 def next_train_to(station, destination):
@@ -37,6 +28,9 @@ def next_train_to(station, destination):
         trains_from_destination = get_station_info(get_station_code(destination))
     except ValueError as message:
         return str(message)
+
+    if len(trains_from_departure) == 0 or len(trains_from_destination) == 0:
+        return "No station information available"
 
     for train_id in trains_from_departure:
         # A time of 00:00 signals the train in inbound rather than out.
