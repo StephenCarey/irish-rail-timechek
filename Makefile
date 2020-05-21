@@ -5,6 +5,7 @@ mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 mkfile_dir := $(abspath $(dir $(mkfile_path)))
 venv_name := rail-check
 app_name := irish_rail_timecheck
+py_scrip_location := ./*.py util/create_station_map.py
 
 create_venv:  ## Creates a virtualenv, called by init
 ifneq ($(wildcard $(mkfile_dir)/$(venv_name)),)
@@ -19,9 +20,9 @@ init: create_venv ## Setup your local env, e.g. create virtual env with dependan
 	@ ./${venv_name}/bin/python -m pip install -r requirements-dev.txt
 
 lint: ## Run a lint on app
-	./${venv_name}/bin/python -m pylint ${app_name}
-	./${venv_name}/bin/python -m flake8 ${app_name} --max-line-length=127
-	./${venv_name}/bin/python -m bandit -r ${app_name}
+	./${venv_name}/bin/python -m pylint ${app_name} ${py_scrip_location}
+	./${venv_name}/bin/python -m flake8 ${app_name} ${py_scrip_location} --max-line-length=127
+	./${venv_name}/bin/python -m bandit -r ${app_name} ${py_scrip_location}
 
 test: init ## Run any tests.
 	./${venv_name}/bin/python -m pytest
