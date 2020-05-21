@@ -1,0 +1,361 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "irish rail",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "NextTrainIntent",
+                    "slots": [
+                        {
+                            "name": "depart",
+                            "type": "AMAZON.StreetName"
+                        },
+                        {
+                            "name": "arrive",
+                            "type": "AMAZON.StreetName"
+                        }
+                    ],
+                    "samples": [
+                        "{depart} to {arrive}",
+                        "next train from {depart} to {arrive}",
+                        "check the next train from {depart} to {arrive}",
+                        "when is the next train from {depart} to {arrive}"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "CaptureStationIntent",
+                    "slots": [
+                        {
+                            "name": "homeStation",
+                            "type": "AMAZON.StreetName",
+                            "samples": [
+                                "my closest station is {homeStation}",
+                                "{homeStation} is my nearest ",
+                                "my nearest station is {homeStation}",
+                                "{homeStation}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "{homeStation} is my closest station",
+                        "{homeStation} is my nearest station",
+                        "my closest station is {homeStation}",
+                        "my nearest station is {homeStation}"
+                    ]
+                },
+                {
+                    "name": "NextTrainToIntent",
+                    "slots": [
+                        {
+                            "name": "destination",
+                            "type": "AMAZON.StreetName",
+                            "samples": [
+                                "I want to go to {destination}",
+                                "{destination}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "when is the next train to {destination}",
+                        "next train to {destination}"
+                    ]
+                }
+            ],
+            "types": []
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "CaptureStationIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "homeStation",
+                            "type": "AMAZON.StreetName",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.70890845520.757957829660"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "NextTrainToIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "destination",
+                            "type": "AMAZON.StreetName",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1534053768989.40307109677"
+                            },
+                            "validations": [
+                                {
+                                    "type": "isInSet",
+                                    "prompt": "Slot.Validation.1534053768989.40307109677.724938546495",
+                                    "values": [
+                                        "belfast",
+                                        "lisburn",
+                                        "lurgan",
+                                        "portadown",
+                                        "sligo",
+                                        "newry",
+                                        "collooney",
+                                        "ballina",
+                                        "ballymote",
+                                        "dundalk",
+                                        "foxford",
+                                        "boyle",
+                                        "carrick on shannon",
+                                        "carrick",
+                                        "on",
+                                        "shannon",
+                                        "dromod",
+                                        "castlebar",
+                                        "manulla junction",
+                                        "manulla",
+                                        "junction",
+                                        "westport",
+                                        "ballyhaunis",
+                                        "castlerea",
+                                        "longford",
+                                        "claremorris",
+                                        "drogheda",
+                                        "edgeworthstown",
+                                        "laytown",
+                                        "gormanston",
+                                        "roscommon",
+                                        "balbriggan",
+                                        "skerries",
+                                        "mullingar",
+                                        "rush and lusk",
+                                        "rush",
+                                        "lusk",
+                                        "donabate",
+                                        "malahide",
+                                        "m3 parkway",
+                                        "m3",
+                                        "parkway",
+                                        "athlone",
+                                        "dunboyne",
+                                        "portmarnock",
+                                        "enfield",
+                                        "kilcock",
+                                        "clongriffin",
+                                        "sutton",
+                                        "bayside",
+                                        "howth junction",
+                                        "howth",
+                                        "kilbarrack",
+                                        "hansfield",
+                                        "clonsilla",
+                                        "castleknock",
+                                        "raheny",
+                                        "harmonstown",
+                                        "maynooth",
+                                        "navan road parkway",
+                                        "navan",
+                                        "road",
+                                        "coolmine",
+                                        "ashtown",
+                                        "leixlip (confey)",
+                                        "leixlip",
+                                        "(confey)",
+                                        "killester",
+                                        "broombridge",
+                                        "leixlip (louisa bridge)",
+                                        "(louisa",
+                                        "bridge)",
+                                        "drumcondra",
+                                        "clontarf road",
+                                        "clontarf",
+                                        "dublin connolly",
+                                        "dublin",
+                                        "connolly",
+                                        "docklands",
+                                        "tara street",
+                                        "tara",
+                                        "street",
+                                        "dublin heuston",
+                                        "heuston",
+                                        "dublin pearse",
+                                        "pearse",
+                                        "woodlawn",
+                                        "grand canal dock",
+                                        "grand",
+                                        "canal",
+                                        "dock",
+                                        "clara",
+                                        "ballinasloe",
+                                        "adamstown",
+                                        "lansdowne road",
+                                        "lansdowne",
+                                        "park west and cherry orchard",
+                                        "park",
+                                        "west",
+                                        "cherry",
+                                        "orchard",
+                                        "park west",
+                                        "clondalkin",
+                                        "sandymount",
+                                        "hazelhatch",
+                                        "attymon",
+                                        "sydney parade",
+                                        "sydney",
+                                        "parade",
+                                        "booterstown",
+                                        "blackrock",
+                                        "athenry",
+                                        "seapoint",
+                                        "salthill and monkstown",
+                                        "salthill",
+                                        "monkstown",
+                                        "dun laoghaire",
+                                        "dun",
+                                        "laoghaire",
+                                        "sandycove",
+                                        "glenageary",
+                                        "dalkey",
+                                        "oranmore",
+                                        "galway",
+                                        "tullamore",
+                                        "killiney",
+                                        "sallins",
+                                        "shankill",
+                                        "craughwell",
+                                        "woodbrook",
+                                        "bray",
+                                        "newbridge",
+                                        "curragh",
+                                        "kildare",
+                                        "ardrahan",
+                                        "portarlington",
+                                        "monasterevin",
+                                        "greystones",
+                                        "kilcoole",
+                                        "gort",
+                                        "portlaoise",
+                                        "athy",
+                                        "wicklow",
+                                        "roscrea",
+                                        "cloughjordan",
+                                        "rathdrum",
+                                        "ballybrophy",
+                                        "nenagh",
+                                        "carlow",
+                                        "ennis",
+                                        "arklow",
+                                        "templemore",
+                                        "birdhill",
+                                        "sixmilebridge",
+                                        "castleconnell",
+                                        "muine bheag",
+                                        "muine",
+                                        "bheag",
+                                        "thurles",
+                                        "gorey",
+                                        "limerick",
+                                        "kilkenny",
+                                        "thomastown",
+                                        "enniscorthy",
+                                        "limerick junction",
+                                        "tipperary",
+                                        "cahir",
+                                        "clonmel",
+                                        "carrick on suir",
+                                        "suir",
+                                        "charleville",
+                                        "wexford",
+                                        "campile",
+                                        "ballycullane",
+                                        "rosslare strand",
+                                        "rosslare",
+                                        "strand",
+                                        "tralee",
+                                        "wellingtonbridge",
+                                        "waterford",
+                                        "rosslare europort",
+                                        "europort",
+                                        "bridgetown",
+                                        "farranfore",
+                                        "mallow",
+                                        "banteer",
+                                        "rathmore",
+                                        "millstreet",
+                                        "killarney",
+                                        "midleton",
+                                        "carrigtwohill",
+                                        "glounthaune",
+                                        "littleisland",
+                                        "cork",
+                                        "fota",
+                                        "carrigaloe",
+                                        "rushbrooke",
+                                        "cobh",
+                                        "city junction",
+                                        "city",
+                                        "central junction",
+                                        "central",
+                                        "dunmurray",
+                                        "moira"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.70890845520.757957829660",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "what is your nearest station?"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.1534053768989.40307109677.724938546495",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "What is the name of the station you want to go to?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1534053768989.40307109677",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "What station do you want to go to?"
+                    }
+                ]
+            }
+        ]
+    }
+}
