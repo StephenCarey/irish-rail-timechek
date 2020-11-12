@@ -25,6 +25,7 @@ s3_adapter = S3Adapter(bucket_name=os.environ["S3_PERSISTENCE_BUCKET"])
 
 class LaunchRequestHandler(AbstractRequestHandler):
     """Handler for Skill Launch."""
+
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
 
@@ -32,11 +33,12 @@ class LaunchRequestHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Welcome, you can say Hello or Help. Which would you like to try?"
+        speak_output = (
+            "Welcome, you can say Hello or Help. Which would you like to try?"
+        )
 
         return (
-            handler_input.response_builder
-            .speak(speak_output)
+            handler_input.response_builder.speak(speak_output)
             .ask(speak_output)
             .response
         )
@@ -44,6 +46,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
 
 class CaptureStationIntentHandler(AbstractRequestHandler):
     """Handler for save station Intent."""
+
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         return ask_utils.is_intent_name("CaptureStationIntent")(handler_input)
@@ -53,26 +56,22 @@ class CaptureStationIntentHandler(AbstractRequestHandler):
         slots = handler_input.request_envelope.request.intent.slots
         depart = slots["homeStation"].value
 
-        local_station = {
-            "homeStation": depart
-        }
+        local_station = {"homeStation": depart}
 
         attributes_manager = handler_input.attributes_manager
         attributes_manager.persistent_attributes = local_station
         attributes_manager.save_persistent_attributes()
 
-        speak_output = 'Thanks, I will remember your local station is {depart}.' \
-            .format(depart=depart)
-
-        return (
-            handler_input.response_builder
-            .speak(speak_output)
-            .response
+        speak_output = "Thanks, I will remember your local station is {depart}.".format(
+            depart=depart
         )
+
+        return handler_input.response_builder.speak(speak_output).response
 
 
 class NextTrainIntentHandler(AbstractRequestHandler):
     """Handler for Next Train where not information is stored."""
+
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         return ask_utils.is_intent_name("NextTrainIntent")(handler_input)
@@ -87,15 +86,12 @@ class NextTrainIntentHandler(AbstractRequestHandler):
 
         speak_output = station.next_train_to(depart, arrive)
 
-        return (
-            handler_input.response_builder
-            .speak(speak_output)
-            .response
-        )
+        return handler_input.response_builder.speak(speak_output).response
 
 
 class NextTrainToIntentHandler(AbstractRequestHandler):
     """Handler for Next Train where not information is stored."""
+
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         return ask_utils.is_intent_name("NextTrainToIntent")(handler_input)
@@ -103,7 +99,7 @@ class NextTrainToIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         attr = handler_input.attributes_manager.persistent_attributes
-        departure = attr['homeStation']
+        departure = attr["homeStation"]
 
         slots = handler_input.request_envelope.request.intent.slots
         destination = slots["destination"].value
@@ -112,15 +108,12 @@ class NextTrainToIntentHandler(AbstractRequestHandler):
 
         speak_output = station.next_train_to(departure, destination)
 
-        return (
-            handler_input.response_builder
-            .speak(speak_output)
-            .response
-        )
+        return handler_input.response_builder.speak(speak_output).response
 
 
 class HelpIntentHandler(AbstractRequestHandler):
     """Handler for Help Intent."""
+
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         return ask_utils.is_intent_name("AMAZON.HelpIntent")(handler_input)
@@ -130,8 +123,7 @@ class HelpIntentHandler(AbstractRequestHandler):
         speak_output = "You can say hello to me! How can I help?"
 
         return (
-            handler_input.response_builder
-            .speak(speak_output)
+            handler_input.response_builder.speak(speak_output)
             .ask(speak_output)
             .response
         )
@@ -139,24 +131,23 @@ class HelpIntentHandler(AbstractRequestHandler):
 
 class CancelOrStopIntentHandler(AbstractRequestHandler):
     """Single handler for Cancel and Stop Intent."""
+
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return (ask_utils.is_intent_name("AMAZON.CancelIntent")(handler_input) or
-                ask_utils.is_intent_name("AMAZON.StopIntent")(handler_input))
+        return ask_utils.is_intent_name("AMAZON.CancelIntent")(
+            handler_input
+        ) or ask_utils.is_intent_name("AMAZON.StopIntent")(handler_input)
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         speak_output = "Goodbye!"
 
-        return (
-            handler_input.response_builder
-            .speak(speak_output)
-            .response
-        )
+        return handler_input.response_builder.speak(speak_output).response
 
 
 class SessionEndedRequestHandler(AbstractRequestHandler):
     """Handler for Session End."""
+
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         return ask_utils.is_request_type("SessionEndedRequest")(handler_input)
@@ -175,6 +166,7 @@ class IntentReflectorHandler(AbstractRequestHandler):
     for your intents by defining them above, then also adding them to the request
     handler chain below.
     """
+
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         return ask_utils.is_request_type("IntentRequest")(handler_input)
@@ -184,11 +176,7 @@ class IntentReflectorHandler(AbstractRequestHandler):
         intent_name = ask_utils.get_intent_name(handler_input)
         speak_output = "You just triggered " + intent_name + "."
 
-        return (
-            handler_input.response_builder
-            .speak(speak_output)
-            .response
-        )
+        return handler_input.response_builder.speak(speak_output).response
 
 
 class CatchAllExceptionHandler(AbstractExceptionHandler):
@@ -196,6 +184,7 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
     stating the request handler chain is not found, you have not implemented a handler for
     the intent being invoked or included it in the skill builder below.
     """
+
     def can_handle(self, handler_input, exception):
         # type: (HandlerInput, Exception) -> bool
         return True
@@ -207,8 +196,7 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
         speak_output = "Sorry, I had trouble doing what you asked. Please try again."
 
         return (
-            handler_input.response_builder
-            .speak(speak_output)
+            handler_input.response_builder.speak(speak_output)
             .ask(speak_output)
             .response
         )

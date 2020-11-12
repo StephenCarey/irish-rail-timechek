@@ -11,31 +11,40 @@ import defusedxml.minidom
 
 
 def build_map():
-    """Get a train stations code based on its common name
-    """
-    response = requests.get('http://api.irishrail.ie/realtime/realtime.asmx/getAllStationsXML')
+    """Get a train stations code based on its common name"""
+    response = requests.get(
+        "http://api.irishrail.ie/realtime/realtime.asmx/getAllStationsXML"
+    )
     try:
         dom = defusedxml.minidom.parseString(response.text)
     except ExpatError:
-        raise ValueError('No station information available')
+        raise ValueError("No station information available")
 
     stations = dom.getElementsByTagName("objStation")
     station_map = {}
 
     for station_tag in stations:
-        common_name = station_tag.getElementsByTagName("StationDesc")[0].childNodes[0].data
-        station_map[common_name.lower()] = \
-            station_tag.getElementsByTagName("StationCode")[0].childNodes[0].data.strip()
+        common_name = (
+            station_tag.getElementsByTagName("StationDesc")[0].childNodes[0].data
+        )
+        station_map[common_name.lower()] = (
+            station_tag.getElementsByTagName("StationCode")[0]
+            .childNodes[0]
+            .data.strip()
+        )
 
-        if ' ' in common_name:
+        if " " in common_name:
             abbreviations = common_name.split()
             with suppress(ValueError, AttributeError):
-                abbreviations.remove('and')
-                abbreviations.remove('on')
+                abbreviations.remove("and")
+                abbreviations.remove("on")
 
             for phrase in abbreviations:
-                station_map[phrase.lower()] = \
-                    station_tag.getElementsByTagName("StationCode")[0].childNodes[0].data.strip()
+                station_map[phrase.lower()] = (
+                    station_tag.getElementsByTagName("StationCode")[0]
+                    .childNodes[0]
+                    .data.strip()
+                )
 
     return station_map
 
