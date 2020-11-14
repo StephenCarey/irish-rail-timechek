@@ -17,8 +17,8 @@ def build_map():
     )
     try:
         dom = defusedxml.minidom.parseString(response.text)
-    except ExpatError:
-        raise ValueError("No station information available")
+    except ExpatError as err:
+        raise ValueError("No station information available") from err
 
     stations = dom.getElementsByTagName("objStation")
     station_map = {}
